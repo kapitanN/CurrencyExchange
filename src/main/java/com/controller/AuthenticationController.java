@@ -4,14 +4,15 @@ import com.dao.AuthenticationBean;
 import com.dao.RegistrationBean;
 import com.dao.UserDAO;
 import com.dao.UsersEntity;
+import org.apache.catalina.connector.Response;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 import javax.validation.Validation;
 import javax.validation.ValidationException;
 
@@ -20,6 +21,7 @@ import javax.validation.ValidationException;
  */
 
 @Controller
+@SessionAttributes({"loginUser","registrationUser","fail"})
 public class AuthenticationController {
 
     private static final Logger LOGGER = Logger.getLogger(AuthenticationController.class);
@@ -44,21 +46,24 @@ public class AuthenticationController {
         return modelAndView;
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(@ModelAttribute("loginUser")AuthenticationBean user){
+    @ResponseBody
+    public String login(@ModelAttribute("loginUser")AuthenticationBean user, @RequestBody AuthenticationBean user1){
         ModelAndView modelAndView = new ModelAndView();
         String fail = "Email or password is incorrect";
         boolean checkUser = userDAO.checkUser(user.getEmail(),user.getPassword());
         LOGGER.info("Check passed");
         if (checkUser){
             LOGGER.info("Set secondPage in setViewName");
-            modelAndView.addObject("loginUser");
-            modelAndView.setViewName("secondPage");
+            //modelAndView.addObject("loginUser");
+            //modelAndView.setViewName("secondPage");
+            return "redirect: /api";
         }else {
             LOGGER.info("Set index in setViewName");
             modelAndView.addObject("fail", fail);
+            LOGGER.info(fail);
             modelAndView.setViewName("index");
-
+            return "redirect:/";
         }
-        return modelAndView;
+
     }
 }

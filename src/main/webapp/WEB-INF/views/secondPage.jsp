@@ -4,9 +4,10 @@
     <title>Second Page</title>
 </head>
 <body>
-Введенное имя: ${loginUser.email};
+Введенное имя: ${loginUser.email} ${registrationUser.email};
 <br/>
-Введенный пароль: ${loginUser.password};
+Введенный пароль: ${loginUser.password} ${registrationUser.password};
 <br/>
+Курс доллара: ${api};
 </body>
 </html>

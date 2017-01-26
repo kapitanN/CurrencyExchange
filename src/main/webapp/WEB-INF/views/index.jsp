@@ -9,6 +9,28 @@
     <script src="../../resources/js/modal.js"></script>
     <link rel="stylesheet" type="text/css" href="../../resources/css/cloud.css">
     <link rel="shortcut icon" href="../../resources/mini-logo.png" type="image/png">
+    <script>
+    $(document).ready(
+        function($) {
+            $("#test").click(function(event) {
+                var data = {}
+                data["email"] = $("#email").val();
+                data["password"] = $("#password").val();
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "/test/ajaxtest",
+                    data: JSON.stringify(data),
+                    success: function (data) {
+                        $("#fail").text(data);
+                    },
+                    error: function (e) {
+                        $("#fail").text(data);
+                    }
+                });
+            });
+        });
+</script>
 </head>
 <body>
 <div class="main-signin">
@@ -19,10 +41,10 @@
     <div class="main-signin_middle"`>
         <div class="middle_form">
             <spring:form method="post" modelAttribute="loginUser" action="login">
-                <input  type="text" placeholder="Email" id="email" name="email"/>
-                <input  type="password" placeholder="Password" id="pass" name="password"/>
+                <input  id = "nameId"type="text" placeholder="Email" id="email" name="email"/>
+                <input  type="password" placeholder="Password" id="password" name="password"/>
                 <input type="submit" value="Sign in">
-                <div style="color: darkorange">${fail}</div>
+                <div id = "fail" style="color: darkorange"></div>
             </spring:form>
         </div>
     </div>

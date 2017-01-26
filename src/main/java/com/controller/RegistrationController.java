@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
@@ -19,6 +20,7 @@ import javax.validation.ValidationException;
  */
 
 @Controller(value = "/")
+@SessionAttributes("registrationUser")
 public class RegistrationController {
 
     private static final Logger LOGGER = Logger.getLogger(RegistrationController.class);
@@ -33,11 +35,8 @@ public class RegistrationController {
         this.userDAO = userDAO;
     }
     @RequestMapping(value = "registration", method = RequestMethod.POST)
-    public ModelAndView registration(@ModelAttribute("registrationUser")RegistrationBean user){
-        ModelAndView modelAndView = new ModelAndView();
+    public String registration(@ModelAttribute("registrationUser")RegistrationBean user){
         userDAO.addUser(user);
-        modelAndView.addObject("registrationUser");
-        modelAndView.setViewName("thirdPage");
-        return modelAndView;
+        return "redirect:api";
     }
 }
