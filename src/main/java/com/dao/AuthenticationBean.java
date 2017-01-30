@@ -42,4 +42,12 @@ public class AuthenticationBean {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "AuthenticationBean{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

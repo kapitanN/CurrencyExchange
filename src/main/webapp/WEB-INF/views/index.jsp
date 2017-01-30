@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page session="true"%>
 <html>
 <head>
     <title>Currency Exchange</title>
@@ -9,29 +10,30 @@
     <script src="../../resources/js/modal.js"></script>
     <link rel="stylesheet" type="text/css" href="../../resources/css/cloud.css">
     <link rel="shortcut icon" href="../../resources/mini-logo.png" type="image/png">
-    <script>
-    $(document).ready(
-        function($) {
-            $("#test").click(function(event) {
-                var data = {}
-                data["email"] = $("#email").val();
-                data["password"] = $("#password").val();
-                $.ajax({
-                    type: "POST",
-                    contentType: "application/json",
-                    url: "/test/ajaxtest",
-                    data: JSON.stringify(data),
-                    success: function (data) {
-                        $("#fail").text(data);
-                    },
-                    error: function (e) {
-                        $("#fail").text(data);
-                    }
-                });
-            });
-        });
-</script>
+
 </head>
+<script>
+//    $(document).ready(
+//        function($) {
+//            $("#submit").click(function(event) {
+//                var data = {}
+//                data["email"] = $("#email").val();
+//                data["password"] = $("#password").val();
+//                $.ajax({
+//                    type: "POST",
+//                    contentType: "application/json",
+//                    url: "/login",
+//                    data: JSON.stringify(data),
+//                    success: function (data) {
+//                        $("#fail").text(data);
+//                    },
+//                    error: function (e) {
+//                        $("#fail").text(data);
+//                    }
+//                });
+//            });
+//        });
+</script>
 <body>
 <div class="main-signin">
     <div class="main-signin_head">
@@ -40,11 +42,11 @@
     </div>
     <div class="main-signin_middle"`>
         <div class="middle_form">
-            <spring:form method="post" modelAttribute="loginUser" action="login">
-                <input  id = "nameId"type="text" placeholder="Email" id="email" name="email"/>
+            <spring:form action = "/login" method="post" modelAttribute="loginUser">
+                <input  id = "email" type="text" placeholder="Email" name="email"/>
                 <input  type="password" placeholder="Password" id="password" name="password"/>
-                <input type="submit" value="Sign in">
-                <div id = "fail" style="color: darkorange"></div>
+                <input id = "submit" type="submit" value="Sign in">
+                <div id = "fail" style="color: darkorange">${fail}</div>
             </spring:form>
         </div>
     </div>
