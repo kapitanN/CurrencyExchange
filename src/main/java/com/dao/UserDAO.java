@@ -16,18 +16,18 @@ public class UserDAO {
 
     private static final Logger LOGGER = Logger.getLogger(UserDAO.class);
 
-    public UsersEntity getUser(String email){
+    public UserEntity getUser(String email){
         Session session = HibernateSessionFactory.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query query = session.createQuery("from UsersEntity where email = :email");
+        Query query = session.createQuery("from UserEntity where email = :email");
         query.setParameter("email",email);
-        UsersEntity user = (UsersEntity) query.uniqueResult();
+        UserEntity user = (UserEntity) query.uniqueResult();
         session.getTransaction().commit();
         return user;
     }
     public void addUser(RegistrationBean userBean){
-        UsersEntity user = convertToUser(userBean);
-        UsersEntity testUser = getUser(user.getEmail());
+        UserEntity user = convertToUser(userBean);
+        UserEntity testUser = getUser(user.getEmail());
         Session session = HibernateSessionFactory.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
@@ -40,7 +40,7 @@ public class UserDAO {
     }
 
     public boolean checkUser(String email, String password){
-        UsersEntity user = getUser(email);
+        UserEntity user = getUser(email);
         if (user !=null && user.getPassword().equals(password)){
             return true;
         }
@@ -49,8 +49,18 @@ public class UserDAO {
         }
     }
 
-    private UsersEntity convertToUser(RegistrationBean registrationBean) {
-        UsersEntity user = new UsersEntity();
+    public boolean checkUser(String email){
+        UserEntity user = getUser(email);
+        if (user !=null){
+        return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private UserEntity convertToUser(RegistrationBean registrationBean) {
+        UserEntity user = new UserEntity();
         user.setName(registrationBean.getName());
         user.setLastName(registrationBean.getLastName());
         user.setEmail(registrationBean.getEmail());

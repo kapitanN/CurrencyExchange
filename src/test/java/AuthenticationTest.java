@@ -2,7 +2,7 @@
  * Created by nikita on 05.01.2017.
  */
 import com.dao.UserDAO;
-import com.dao.UsersEntity;
+import com.dao.UserEntity;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class AuthenticationTest {
     @Test
     public void getUserTest(){
         LOGGER.info("get user test");
-        UsersEntity user = userDAO.getUser(CORRECT_EMAIL);
+        UserEntity user = userDAO.getUser(CORRECT_EMAIL);
         assertEquals(CORRECT_NAME, user.getName());
     }
 

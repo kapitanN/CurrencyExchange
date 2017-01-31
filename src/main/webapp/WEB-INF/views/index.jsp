@@ -42,8 +42,8 @@
     <div class="main-signin_middle"`>
         <div class="middle_form">
             <spring:form action = "/login" method="post" modelAttribute="loginUser">
-                <input  id = "email" type="text" placeholder="Email" name="email"/>
-                <input  type="password" placeholder="Password" id="password" name="password"/>
+                <input  type="text" placeholder="Email" name="email"/>
+                <input  type="password" placeholder="Password" name="password"/>
                 <input id = "submit" type="submit" value="Sign in">
                 <div id = "fail" style="color: darkorange">${fail}</div>
             </spring:form>

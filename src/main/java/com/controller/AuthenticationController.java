@@ -3,11 +3,8 @@ package com.controller;
 import com.dao.AuthenticationBean;
 import com.dao.RegistrationBean;
 import com.dao.UserDAO;
-import com.dao.UsersEntity;
-import org.apache.catalina.connector.Response;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -16,12 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.validation.Validation;
 import javax.validation.ValidationException;
-import java.util.Collection;
-import java.util.Map;
 
 /**
  * Created by nikita on 05.01.2017.
@@ -62,7 +54,7 @@ public class AuthenticationController {
             modelAndView.addObject("loginUser",loginUser);
             return "redirect:api";
         }else {
-            LOGGER.info("Validation fails");
+            LOGGER.info("Validation fails in authentication");
             redirectAttributes.addFlashAttribute("fail","Email or password is incorrect");
             return "redirect:fail";
         }

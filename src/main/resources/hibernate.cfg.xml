@@ -14,7 +14,7 @@
     <!-- NOTE that after automapping with IDEA property username and password will delete -->
     <!--and will be:  Initial SessionFactory failedorg.hibernate.service.spi.ServiceException: Unable to create requested service-->
     <!-- NOTE that after automapping with IDEA property username and password will delete -->
-    <mapping class="com.dao.UsersEntity"/>
+    <mapping class="com.dao.UserEntity"/>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
