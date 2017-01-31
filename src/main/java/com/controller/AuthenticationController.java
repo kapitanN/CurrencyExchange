@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -50,30 +53,24 @@ public class AuthenticationController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(@ModelAttribute("loginUser") AuthenticationBean loginUser, RedirectAttributes redirectAttributes, ModelAndView modelAndView){
+        LOGGER.info("In the login method");
+        boolean checkUser = userDAO.checkUser(loginUser.getEmail(),loginUser.getPassword());
+        if (checkUser){
+            LOGGER.info("Passed checks");
+            modelAndView.addObject("loginUser",loginUser);
+            return "redirect:api";
+        }else {
+            LOGGER.info("Validation fails");
+            redirectAttributes.addFlashAttribute("fail","Email or password is incorrect");
+            return "redirect:fail";
+        }
+    }
+
     @RequestMapping(value = "/fail", method = RequestMethod.GET)
     public ModelAndView fail(){
         LOGGER.info("fail page");
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("fail");
-        modelAndView.setViewName("index");
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(@ModelAttribute ("loginUser") AuthenticationBean loginUser,HttpServletRequest request,RedirectAttributes redirectAttributes){
-        LOGGER.info("In the login method");
-        ModelAndView modelAndView = new ModelAndView();
-        HttpSession session = request.getSession();
-        boolean checkUser = userDAO.checkUser(loginUser.getEmail(),loginUser.getPassword());
-        if (checkUser){
-            LOGGER.info("Check passed");
-            modelAndView.addObject("loginUser");
-            return new ModelAndView("redirect:api","loginUser", loginUser.toString());
-        }else {
-            LOGGER.info("Set index in setViewName");
-            //session.setAttribute("fail", "Email or password is incorrect");
-            redirectAttributes.addFlashAttribute("fail","Email or password is incorrect");
-            return new ModelAndView("redirect:/fail");
-        }
+        return new ModelAndView("index");
     }
 }

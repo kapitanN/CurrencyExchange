@@ -18,15 +18,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -41,6 +39,7 @@ public class APIController {
     public static final String BASE_URL = "http://apilayer.net/api/";
     public static final String ENDPOINT = "live";
 
+    private static final Logger LOGGER = Logger.getLogger(APIController.class);
     // this object is used for executing requests to the (REST) API
     //static CloseableHttpClient httpClient = HttpClients.createDefault();
     /**
@@ -64,6 +63,7 @@ public class APIController {
         // The following line initializes the HttpGet Object with the URL in order to send a request
         //HttpGet get = new HttpGet(BASE_URL + ENDPOINT + "?access_key=" + ACCESS_KEY);
         ModelAndView modelAndView = new ModelAndView();
+        LOGGER.info("in api");
         modelAndView.addObject("loginUser");
         modelAndView.addObject("registrationUser");
         modelAndView.setViewName("secondPage");

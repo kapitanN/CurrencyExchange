@@ -1,7 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page session="true"%>
 <html>
 <head>
     <title>Currency Exchange</title>
@@ -12,28 +11,28 @@
     <link rel="shortcut icon" href="../../resources/mini-logo.png" type="image/png">
 
 </head>
-<script>
-//    $(document).ready(
-//        function($) {
-//            $("#submit").click(function(event) {
-//                var data = {}
-//                data["email"] = $("#email").val();
-//                data["password"] = $("#password").val();
-//                $.ajax({
-//                    type: "POST",
-//                    contentType: "application/json",
-//                    url: "/login",
-//                    data: JSON.stringify(data),
-//                    success: function (data) {
-//                        $("#fail").text(data);
-//                    },
-//                    error: function (e) {
-//                        $("#fail").text(data);
-//                    }
-//                });
-//            });
-//        });
-</script>
+<%--<script>--%>
+    <%--$(document).ready(--%>
+        <%--function($) {--%>
+            <%--$("#submit").click(function(event) {--%>
+                <%--var data = {}--%>
+                <%--data["email"] = $("#email").val();--%>
+                <%--data["password"] = $("#password").val();--%>
+                <%--$.ajax({--%>
+                    <%--type: "POST",--%>
+                    <%--contentType: "application/json",--%>
+                    <%--url: "/login",--%>
+                    <%--data: JSON.stringify(data),--%>
+                    <%--success: function (data) {--%>
+                        <%--$("#fail").text(data);--%>
+                    <%--},--%>
+                    <%--error: function (e) {--%>
+                        <%--$("#fail").text(data);--%>
+                    <%--}--%>
+                <%--});--%>
+            <%--});--%>
+        <%--});--%>
+<%--</script>--%>
 <body>
 <div class="main-signin">
     <div class="main-signin_head">
