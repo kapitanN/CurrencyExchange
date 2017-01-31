@@ -56,13 +56,7 @@ public class AuthenticationController {
         }else {
             LOGGER.info("Validation fails in authentication");
             redirectAttributes.addFlashAttribute("fail","Email or password is incorrect");
-            return "redirect:fail";
+            return "redirect:/";
         }
-    }
-
-    @RequestMapping(value = "/fail", method = RequestMethod.GET)
-    public ModelAndView fail(){
-        LOGGER.info("fail page");
-        return new ModelAndView("index");
     }
 }

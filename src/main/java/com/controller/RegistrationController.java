@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.dao.AuthenticationBean;
 import com.dao.RegistrationBean;
 import com.dao.UserDAO;
 import org.apache.log4j.Logger;
@@ -34,17 +35,17 @@ public class RegistrationController {
         this.userDAO = userDAO;
     }
     @RequestMapping(value = "registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("registrationUser")RegistrationBean user, RedirectAttributes redirectAttributes){
+    public String registration(@ModelAttribute("registrationUser") RegistrationBean registrationUser, RedirectAttributes redirectAttributes){
         LOGGER.info("registration method started");
-        boolean checkUser = userDAO.checkUser(user.getEmail());
+        boolean checkUser = userDAO.checkUser(registrationUser.getEmail());
         if (!checkUser){
-            userDAO.addUser(user);
+            userDAO.addUser(registrationUser);
             return "redirect:api";
         }
         else {
             LOGGER.info("Validation fails in registration");
             redirectAttributes.addFlashAttribute("fail","User with this email already exists");
-            return "redirect:fail";
+            return "redirect:/";
         }
     }
 }

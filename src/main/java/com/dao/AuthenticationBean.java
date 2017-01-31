@@ -11,6 +11,14 @@ public class AuthenticationBean {
     private String email;
     private String password;
 
+    public AuthenticationBean() {
+    }
+
+    public AuthenticationBean(String email, String password){
+        this.email = email;
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }
