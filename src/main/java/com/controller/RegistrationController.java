@@ -61,7 +61,12 @@ public class RegistrationController {
             session.setAttribute("loginUser",userBean);
             boolean checkUser = userDAO.checkUser(registrationUser.getEmail());
             if (!checkUser){
+                try{
                 userDAO.addUser(registrationUser);
+                }
+                catch (Exception e){
+                    LOGGER.error("User cannot be added");
+                }
                 return "redirect:api";
             }
             else {

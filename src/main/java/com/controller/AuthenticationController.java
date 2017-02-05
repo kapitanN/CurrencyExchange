@@ -64,7 +64,6 @@ public class AuthenticationController {
         boolean checkUser = userDAO.checkUser(loginUser.getEmail(),loginUser.getPassword());
         if (checkUser){
             LOGGER.info("Passed checks");
-            modelAndView.addObject("loginUser",loginUser);
             return "redirect:api";
         }else {
             LOGGER.info("Validation fails in authentication");

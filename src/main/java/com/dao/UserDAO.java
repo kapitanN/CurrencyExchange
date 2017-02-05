@@ -30,7 +30,6 @@ public class UserDAO {
         UserEntity testUser = getUser(user.getEmail());
         Session session = HibernateSessionFactory.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         if (testUser != null){
             session.close();
             throw new ValidationException(String.format("User with email '%s' already exists", user.getEmail()));

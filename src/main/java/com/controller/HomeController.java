@@ -75,46 +75,46 @@ public class HomeController {
         modelAndView.addObject("loginUser", userBean);
         modelAndView.addObject("registrationUser", userBean);
         modelAndView.setViewName("home");
-        try {
-            CloseableHttpResponse response =  httpClient.execute(get);
-            HttpEntity entity = response.getEntity();
-
-            // the following line converts the JSON Response to an equivalent Java Object
-            JSONObject exchangeRates = new JSONObject(EntityUtils.toString(entity));
-
-            System.out.println("Live Currency Exchange Rates");
-
-            // Parsed JSON Objects are accessed according to the JSON resonse's hierarchy, output strings are built
-            Date timeStampDate = new Date((long)(exchangeRates.getLong("timestamp")*1000));
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a");
-            String formattedDate = dateFormat.format(timeStampDate);
-            String api = exchangeRates.getString("source") + " in UAH : " + exchangeRates.getJSONObject("quotes").getDouble("USDUAH");
-            String api1 = exchangeRates.getString("source") + " in EUR : " + exchangeRates.getJSONObject("quotes").getDouble("USDEUR");
-            String api2 = exchangeRates.getString("source") + " in RUB : " + exchangeRates.getJSONObject("quotes").getDouble("USDRUB");
-            String api3 = exchangeRates.getString("source") + " in GBP : " + exchangeRates.getJSONObject("quotes").getDouble("USDGBP");
-            String api4 = exchangeRates.getString("source") + " in PLN : " + exchangeRates.getJSONObject("quotes").getDouble("USDPLN");
-            String date = "Date: " + formattedDate;
-            modelAndView.addObject("api", api);
-            modelAndView.addObject("api1", api1);
-            modelAndView.addObject("api2", api2);
-            modelAndView.addObject("api3", api3);
-            modelAndView.addObject("api4", api4);
-            modelAndView.addObject("date", date);
-            response.close();
-
-        } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+//        try {
+//            CloseableHttpResponse response =  httpClient.execute(get);
+//            HttpEntity entity = response.getEntity();
+//
+//            // the following line converts the JSON Response to an equivalent Java Object
+//            JSONObject exchangeRates = new JSONObject(EntityUtils.toString(entity));
+//
+//            System.out.println("Live Currency Exchange Rates");
+//
+//            // Parsed JSON Objects are accessed according to the JSON resonse's hierarchy, output strings are built
+//            Date timeStampDate = new Date((long)(exchangeRates.getLong("timestamp")*1000));
+//            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a");
+//            String formattedDate = dateFormat.format(timeStampDate);
+//            String api = exchangeRates.getString("source") + " in UAH : " + exchangeRates.getJSONObject("quotes").getDouble("USDUAH");
+//            String api1 = exchangeRates.getString("source") + " in EUR : " + exchangeRates.getJSONObject("quotes").getDouble("USDEUR");
+//            String api2 = exchangeRates.getString("source") + " in RUB : " + exchangeRates.getJSONObject("quotes").getDouble("USDRUB");
+//            String api3 = exchangeRates.getString("source") + " in GBP : " + exchangeRates.getJSONObject("quotes").getDouble("USDGBP");
+//            String api4 = exchangeRates.getString("source") + " in PLN : " + exchangeRates.getJSONObject("quotes").getDouble("USDPLN");
+//            String date = "Date: " + formattedDate;
+//            modelAndView.addObject("api", api);
+//            modelAndView.addObject("api1", api1);
+//            modelAndView.addObject("api2", api2);
+//            modelAndView.addObject("api3", api3);
+//            modelAndView.addObject("api4", api4);
+//            modelAndView.addObject("date", date);
+//            response.close();
+//
+//        } catch (ClientProtocolException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (ParseException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
 //        //httpClient.close();
         return modelAndView;
         }
