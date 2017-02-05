@@ -41,31 +41,31 @@ public class AuthenticationBean {
         this.password = password;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        AuthenticationBean that = (AuthenticationBean) o;
-//
-//        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-//        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = email != null ? email.hashCode() : 0;
-//        result = 31 * result + (password != null ? password.hashCode() : 0);
-//        return result;
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-//    @Override
-//    public String toString() {
-//        return "AuthenticationBean{" +
-//                "email='" + email + '\'' +
-//                ", password='" + password + '\'' +
-//                '}';
-//    }
+        AuthenticationBean that = (AuthenticationBean) o;
+
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = email != null ? email.hashCode() : 0;
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AuthenticationBean{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

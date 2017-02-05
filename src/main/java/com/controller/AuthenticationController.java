@@ -24,7 +24,6 @@ import javax.validation.ValidationException;
  */
 
 @Controller
-//@SessionAttributes({"loginUser","registrationUser"})
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS , value = "request")
 public class AuthenticationController {
 

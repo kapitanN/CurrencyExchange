@@ -38,10 +38,10 @@
                 <div class="api">${api2}</div>
             </div>
             <div class="row rows">
-                <div class="api">${api}</div>
+                <div class="api">${api3}</div>
             </div>
             <div class="row rows">
-                <div class="api">${api}</div>
+                <div class="api">${api4}</div>
             </div>
         </div>
         <div class="col-xs-8 content">

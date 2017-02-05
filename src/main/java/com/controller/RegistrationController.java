@@ -26,7 +26,6 @@ import javax.validation.ValidationException;
  */
 
 @Controller
-//@SessionAttributes("registrationUser")
 @Scope("request")
 public class RegistrationController {
 
