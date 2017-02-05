@@ -1,13 +1,19 @@
 package com.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
+
 
 /**
  * Created by nikita on 05.01.2017.
  */
 
-@Component
+@Component("loginUser")
+@Scope("session")
 public class AuthenticationBean {
+
     private String email;
     private String password;
 

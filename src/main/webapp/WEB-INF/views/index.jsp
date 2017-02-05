@@ -42,8 +42,8 @@
     <div class="main-signin_middle"`>
         <div class="middle_form">
             <spring:form action = "/login" method="post" modelAttribute="loginUser">
-                <input  type="text" placeholder="Email" name="email"/>
-                <input  type="password" placeholder="Password" name="password"/>
+                <input  type="text" placeholder="Email" name="email" title="Email" required="required"/>
+                <input  type="password" placeholder="Password" name="password" required="required"/>
                 <input id = "submit" type="submit" value="Sign in">
                 <div id = "fail" style="color: darkorange">${fail}</div>
             </spring:form>
@@ -61,10 +61,10 @@
         <div class="header">Sign up</div>
         <spring:form action = "/registration" method="post" modelAttribute="registrationUser">
             <div class="middle_form">
-                <input  type="text" placeholder="Name" name="name"/>
-                <input  type="text" placeholder="Last name" name="lastName"/>
-                <input  type="text" placeholder="Email" name="email"/>
-                <input  type="password" placeholder="Password" name="password"/>
+                <input  type="text" placeholder="Name" name="name" required="required"/>
+                <input  type="text" placeholder="Last name" name="lastName" required="required" />
+                <input  type="email" placeholder="Email" name="email" required="required"/>
+                <input  type="password" placeholder="Password" name="password" required="required"/>
             </div>
             <div class="footer">
                 <input type="submit" value="Send">

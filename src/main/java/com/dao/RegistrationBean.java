@@ -1,8 +1,12 @@
 package com.dao;
 
+import org.hibernate.validator.constraints.Email;
+
 /**
  * Created by nikita on 04.01.2017.
  */
+
+
 public class RegistrationBean {
 
     private String name;
